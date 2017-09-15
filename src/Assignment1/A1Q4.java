@@ -37,7 +37,19 @@ public class A1Q4 {
         kevin.move();
         steve.move();
         kevin.turnLeft();
-        ste
+        steve.turnLeft();
+        steve.turnLeft();
+        steve.turnLeft();
+        kevin.turnLeft();
+        steve.move();
+        kevin.turnLeft();
+        steve.turnLeft();
+        steve.turnLeft();
+        steve.turnLeft();
+        kevin.turnLeft();
+        steve.move();
+        
+        
         
         
         
