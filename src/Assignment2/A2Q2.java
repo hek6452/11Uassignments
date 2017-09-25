@@ -42,27 +42,29 @@ public class A2Q2 {
         //Create chicken Dinner\
         new Thing(javatown, 3, 8);
         //Get robot to win chicken dinner
-        while (karel.countThingsInBackpack() < 1
-                && karel.frontIsClear()) {
+
+        while (karel.canPickThing() == false) {
+            if (karel.countThingsInBackpack() < 1
+                    && karel.frontIsClear()) {
+                karel.move();
+            } else {
+                karel.turnLeft();
+            
+
             karel.move();
-
-
+            karel.turnLeft();
+            karel.turnLeft();
+            karel.turnLeft();
+            karel.move();
+            karel.turnLeft();
+            karel.turnLeft();
+            karel.turnLeft();
+            karel.move();
+            karel.turnLeft();
+            if (karel.canPickThing() == true) {
+                karel.pickThing();
+                }
+            }
         }
-        if (karel.canPickThing()) {
-            karel.pickThing();
-        } else {
-            karel.turnLeft();
-            karel.move();
-            karel.turnLeft();
-            karel.turnLeft();
-            karel.turnLeft();
-            karel.move();
-            karel.turnLeft();
-            karel.turnLeft();
-            karel.turnLeft();
-            karel.move();
-            karel.turnLeft();
-        }
-
     }
 }

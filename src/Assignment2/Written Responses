@@ -1,0 +1,11 @@
+1.
+a)True
+b)True
+c)false
+d)False
+e)false
+f)True
+g)true
+2. It is the same because the commands are just inverted,
+Statement 1= if karel can pick thing up then turn right, else turn left
+Statement 2= if karel cannot pick thing up then turn left, else turn right

@@ -54,6 +54,17 @@ public class JavaExamples {
         }
             //turn robot away from the wall
             kevin.turnLeft();
-    }
+            
+            //Asking if robot is on street
+            if (kevin.getStreet()==3
+            && kevin.getAvenue()==2)
+            kevin.move();
+            //Asking if wall in front or not
+            if(!kevin.frontIsClear()){
+            //make row of things
+            }
+                    
+                    
+                }
     
 }
