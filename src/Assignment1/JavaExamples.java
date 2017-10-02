@@ -68,3 +68,15 @@ public class JavaExamples {
                 }
     
 }
+//PRIMITIVES:
+//Integer-> (Short)int(long)-positive ex: negative whole numbers
+//Variable-> double(flat)-positive ex: negative real numbers or 3.14,-2.0
+//Character-> char-A single letter ex: "C" , "f", "2"
+//True/False->boolean- True or False ex: true, false
+// Strings->String-words or sentences ex: "Hello World"
+
+//City/Thing/Robot/Wall= Objects
+
+//int: yearBorn
+//Start with lowercase letter
+//Name that explains it's function

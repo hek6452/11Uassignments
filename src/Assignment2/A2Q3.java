@@ -19,9 +19,32 @@ public class A2Q3 {
      */
     public static void main(String[] args) {
         // Make magic happen
-        City javatown= new City();
-        
-        Robot karel=new Robot(javatown,63,23,Direction.EAST);
-        
+        City javatown = new City();
+
+        Robot karel = new Robot(javatown, 69, 57, Direction.WEST);
+
+        while (karel.getDirection() != Direction.NORTH) {
+            karel.turnLeft();
+
+        }
+        while (karel.getAvenue() != 0
+                && karel.getStreet() != 0) {
+            karel.move();
+
+            if (karel.getStreet() == 0) {
+                karel.turnLeft();
+
+            }
+
+
+            while (karel.getStreet()==0) {
+                karel.move();
+                if (karel.getAvenue() == 0) {
+                    break;
+                }
+
+            }
+        }
+
     }
 }
