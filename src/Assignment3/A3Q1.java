@@ -34,7 +34,7 @@ public class A3Q1 {
         new Wall(jt, 2, 2, Direction.EAST);
         //make robot orbit twice
         int moveCounter = 0;
-        
+        //Robot counts each time that it travels around a corner and does not exceed 8 travels
         while (moveCounter < 8) {
             
             mac.move();
