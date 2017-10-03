@@ -59,18 +59,30 @@ public class A3Q4 {
         new Wall(jt, 5, 4, Direction.WEST);
         new Wall(jt, 5, 5, Direction.SOUTH);
         new Wall(jt, 5, 5, Direction.EAST);
-    }
-    int block=0;
-    int side=0;
-    int step=0;
-    //make robot  circle blocks
-    
-    while (block <4){
-    while(side,<4){
-        
-    }
-    
-}
-    
-}
 
+        int block = 0;
+        int side = 0;
+        int step = 0;
+        //make robot  circle blocks
+//nest the indivual steps and sides within the blocks that were travelled
+        while (block < 4) {
+            while (side < 4) {
+                //this allows the robot mo move only the the end of the street
+                while (step < 3) {
+                    mac.move();
+                    step = step + 1;
+
+                }
+                //robot will turn left onto next street, then add 1 to the step count 
+               mac.turnLeft();
+                side = side + 1;
+                step = 0;
+            }
+            //robot turns onto and completes final side of block, then resets 
+            mac.turnLeft();
+            block = block + 1;
+            side = 0;
+        }
+
+    }
+}
