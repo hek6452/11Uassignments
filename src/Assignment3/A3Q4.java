@@ -74,7 +74,7 @@ public class A3Q4 {
 
                 }
                 //robot will turn left onto next street, then add 1 to the step count 
-               mac.turnLeft();
+                mac.turnLeft();
                 side = side + 1;
                 step = 0;
             }
