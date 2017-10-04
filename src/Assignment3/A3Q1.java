@@ -36,13 +36,13 @@ public class A3Q1 {
         int moveCounter = 0;
         //Robot counts each time that it travels around a corner and does not exceed 8 travels
         while (moveCounter < 8) {
-            
+
             mac.move();
             mac.move();
             mac.turnLeft();
             mac.move();
             moveCounter = moveCounter + 1;
-            
+
         }
     }
 }
