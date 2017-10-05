@@ -35,27 +35,34 @@ public class InputOutput {
         //ask the person the year they were born
         System.out.println("Please enter the year you were born");
         //get the year
-        int birthYear=input.nextInt();
-        
+        int birthYear = input.nextInt();
+
         //basic error checking
-        while (birthYear>2017){
+        while (birthYear > 2017) {
             System.out.println("I don't think so time traveler!");
             birthYear = input.nextInt();
         }
-        
-        
+
+
         //calculate age
-        int age = 2017-birthYear;
-        
+        int age = 2017 - birthYear;
+
         System.out.println("You are " + age + " years old");
-        
+
         //for loop to count down from 10
-        for(int count =age; count>0; count=count-1){
-        //output the value in the variable
-        System.out.println(count);
-        
+        for (int count = age; count > 0; count = count - 1) {
+            //output the value in the variable
+            System.out.println(count);
+
             Thread.sleep(500);
-        
+            if (age==15)
+                System.out.println("The floor is lava!");
+            if(age==10)
+                System.out.println("Run Jose run!");
+            if(age=5)
+                System.out.println("Csanits is going to eat you!");
+
+
         }
 
     }
