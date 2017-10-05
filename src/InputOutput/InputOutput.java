@@ -55,12 +55,15 @@ public class InputOutput {
             System.out.println(count);
 
             Thread.sleep(500);
-            if (age==15)
+            if (age == 15) {
                 System.out.println("The floor is lava!");
-            if(age==10)
-                System.out.println("Run Jose run!");
-            if(age=5)
+            }
+            if (age == 10) {
+                System.out.println("Run" + firstName + "run!");
+            }
+            if (age == 5) {
                 System.out.println("Csanits is going to eat you!");
+            }
 
 
         }
