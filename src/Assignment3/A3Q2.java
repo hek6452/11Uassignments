@@ -38,7 +38,7 @@ public class A3Q2 {
         int moveCounter = 0;
         jt.showThingCounts(true);
         //after each time the robot transports a Thing, it adds a counter to keep count how many
-        //items it has moves
+        //items it has moved
         while (moveCounter < 10) {
             mac.pickThing();
             mac.move();
