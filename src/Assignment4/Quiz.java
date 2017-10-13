@@ -38,13 +38,15 @@ public class Quiz {
         new Thing(jt, 1, 4);
         new Thing(jt, 1, 5);
 
-
+//integer for each time robot makes a mining trip
         int run = 0;
 
         while (true) {
             while (mac.canPickThing() == false) {
+                //While the robot hasnt done three mining runs it will do a mining run
                 while (run < 3) {
                     mac.move();
+                    //once robot returns to the start of the mine it will put ore down and start next run
                     if (mac.frontIsClear() == false && mac.countThingsInBackpack() == 1) {
                         mac.putThing();
                         mac.turnLeft();
@@ -52,7 +54,7 @@ public class Quiz {
                         mac.move();
                         run = run + 1;
                     }
-
+//whenever robot can pick up ore it will pick it up the start return trip
                     while (mac.canPickThing()) {
                         mac.pickThing();
                         mac.turnLeft();
@@ -60,6 +62,7 @@ public class Quiz {
                         mac.move();
                     }
                 }
+                //final movements to bring robot back to place
                 mac.turnLeft();
                 mac.turnLeft();
                 mac.move();

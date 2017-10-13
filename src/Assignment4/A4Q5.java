@@ -18,5 +18,6 @@ public class A4Q5 {
     public static void main(String[] args) {
         // Input scanner
          Scanner input = new Scanner(System.in);
+         System.out.println("");
     }
 }
