@@ -1,0 +1,9 @@
+Strings are immutable, cannot be changed, you can ask it how big it is--> 
+int lengths.length();
+if(s.charAt()=='e')  
+String newS=S.replace("e","3");
+String part1=S.Substring(2)
+String part2=S.Substring(1,4);
+if(s.chartAt(4)=='e')
+if (s.startsWith("th"))
+if (s.endsWith("ing")
