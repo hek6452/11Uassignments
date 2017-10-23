@@ -24,26 +24,21 @@ public class A4Q6 {
         System.out.println("Enter the recorded speed of the car: ");
         int spd = input.nextInt();
 
-        int speeding = spd-lmt;
+        int speeding = spd - lmt;
 
-     
-            if (speeding<=0) {
-                System.out.println("Congratulations, you are within the speed limit!");
+        if (speeding <= 0) {
+            System.out.println("Congratulations, you are within the speed limit!");
 
-            }
-            if (speeding >= 1 && speeding < 20)
-            {
-                System.out.println("You are speeding and your fine is $100.");
-            }
-            if (speeding >= 21 && speeding < 30)
-            {
-                System.out.println("You are speeding and your fine is $270");
-            }
-            if (speeding >= 31)
-            {
-                System.out.println("You are speeding and your fine is $500.");
-            }
         }
-
+        if (speeding >= 1 && speeding < 20) {
+            System.out.println("You are speeding and your fine is $100.");
+        }
+        if (speeding >= 21 && speeding < 30) {
+            System.out.println("You are speeding and your fine is $270");
+        }
+        if (speeding >= 31) {
+            System.out.println("You are speeding and your fine is $500.");
+        }
     }
 
+}

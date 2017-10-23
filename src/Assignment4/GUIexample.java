@@ -83,6 +83,8 @@ public class GUIexample extends javax.swing.JFrame {
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
+        String name=nameBox.getText();
+        outputBox.setText("Hello"+name);
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**

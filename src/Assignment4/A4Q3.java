@@ -21,10 +21,10 @@ public class A4Q3 {
         System.out.println("Please enter in 4 numbers on separate lines:");
         //recieve input
         double numberone = input.nextInt();
-        double numbertwo=input.nextInt();
-        double numberthree=input.nextInt();
-        double numberfour=input.nextInt();
-        
-        System.out.println("Your numbers were"+numberone+","+numbertwo+","+numberthree+", and"+numberfour);
+        double numbertwo = input.nextInt();
+        double numberthree = input.nextInt();
+        double numberfour = input.nextInt();
+        //display answer
+        System.out.println("Your numbers were" + numberone + "," + numbertwo + "," + numberthree + ", and" + numberfour);
     }
 }

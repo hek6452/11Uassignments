@@ -19,10 +19,10 @@ public class A4Q2 {
         // recieve input
         Scanner input = new Scanner(System.in);
         System.out.println("Please enter the measurement in inches you wish to convert ");
-        double measurement=input.nextDouble();
-        
-        double answer= measurement *2.54;
-        System.out.println(measurement+" Inches is the same as "+answer+" cm");
-        
+        double measurement = input.nextDouble();
+        //display answer
+        double answer = measurement * 2.54;
+        System.out.println(measurement + " Inches is the same as " + answer + " cm");
+
     }
 }
