@@ -44,7 +44,7 @@ public class PigLatinExample {
                 //assemble translation
                 String translated= ending +front+"ay";
                 System.out.println(word + " in pig latin is " + translated);
-                //stop looking fo vowel
+                //stop looking for vowel
                 break;
             }
         }
