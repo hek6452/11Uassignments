@@ -18,31 +18,46 @@ public class UbbiDubbi {
     public static void main(String[] args) {
         // TODO code application logic here
         int p = 0;
-        while (p == 0);
-        {
+        while (p < 1) {
             Scanner input = new Scanner(System.in);
             System.out.println("Please enter word to be translated: ");
             String word = input.nextLine();
+            word=word.toLowerCase();
             String exit = "EXIT";
-            if (word.equals(exit));
-            {
+            if (word.equals(exit)) {
+                System.out.println("See you in Narnia lightning Macqueen");
+                break;
             }
 
 
-            String translated = "";
+            String translate = "";
             Boolean foundvowel = false;
 
 
             for (int i = 0; i < word.length(); i++) {
                 if ((word.charAt(i) == 'a' || word.charAt(i) == 'e' || word.charAt(i) == 'i'
                         || word.charAt(i) == 'o' || word.charAt(i) == 'u') && foundvowel == false) {
-                    String front = word.substring(0, i);
-                    String ending = word.substring(i);
 
-                    String ubbi = ending + front + "ub";
-                    System.out.println(word + " in Ubbi Dubbi is: " + translated);
+                    translate = translate + "ub";
+                    translate = translate + word.charAt(i);
+
+                    foundvowel = true;
+                } else {
+                    if ((word.charAt(i) == 'a' || word.charAt(i) == 'e' || word.charAt(i) == 'i'
+                            || word.charAt(i) == 'o' || word.charAt(i) == 'u') && foundvowel == false) {
+
+                        translate = translate + word.charAt(i);
+                    } else {
+                        translate = translate + word.charAt(i);
+                        foundvowel = false;
+                    }
+
                 }
+
             }
+            System.out.println(translate);
+            p = p + 1;
         }
+
     }
 }
