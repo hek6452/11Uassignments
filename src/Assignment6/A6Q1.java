@@ -28,26 +28,26 @@ public class A6Q1 {
         marks[0] = "Mark 1";
         marks[1] = "Mark 2";
         marks[2] = "Mark 3";
-        
+
         //Storing marks
-         System.out.println("How many students in the class?");
-            int students = input.nextInt();
+        System.out.println("How many students in the class?");
+        int students = input.nextInt();
         for (int i = 0; i < marks.length; i++) {
-           
+
             System.out.println("What was " + marks[i] + " ?");
             average[i] = input.nextDouble();
-            
+
         }
         //Taking all marks and adding together
-        double overall=0;
-        for(int i = 0; i < average.length; i++){
+        double overall = 0;
+        for (int i = 0; i < average.length; i++) {
             //adds all marks to total mark pool juice
-             overall = overall + average[i];
+            overall = overall + average[i];
         }
         //calculate total average
-        double overallave = (int)Math.ceil(overall/students);
-        
-        System.out.println("The class average is "+overallave);
+        double overallave = (int) Math.ceil(overall / students);
+
+        System.out.println("The class average is " + overallave);
 
     }
 }
