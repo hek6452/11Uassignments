@@ -18,8 +18,13 @@ public class A6Q7 {
     public static void main(String[] args) {
         // TODO code application logic here
          Scanner input = new Scanner(System.in);
-        System.out.println("How many numbers are your finding prime numbers from?");
-        int primenums = input.nextInt();
-        double[] numnumbers = new double[primenums];
+        double[] primes = new double[1001];
+        int prime = 2;
+        
+        for(int p = 2; p < 1001; p++){
+            primes[p*prime] = 0;
+            
+              }
+        
     }
 }
