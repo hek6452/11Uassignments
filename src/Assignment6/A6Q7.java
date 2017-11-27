@@ -17,14 +17,26 @@ public class A6Q7 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-         Scanner input = new Scanner(System.in);
-        double[] primes = new double[1001];
-        int prime = 2;
+        Scanner input = new Scanner(System.in);
+        int[] primes = new int[1001];
+    
         
-        for(int p = 2; p < 1001; p++){
-            primes[p*prime] = 0;
+        for (int i = 0; i < primes.length; i++) {
+            primes[i]=i+2;
+        }
+        for (int i = 0; i < 10; i++) {
             
-              }
+        
+            for (int p = 2; (p * prime) - 2 < 1001; p++) {
+                primes[(p * prime) - 2] = 0;
+            }
+            
+        }
+            for (int i = 0; i < primes.length; i++) {
+            System.out.println(primes[i]);
+        }
+        }
+
         
     }
-}
+
