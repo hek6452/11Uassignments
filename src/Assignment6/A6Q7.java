@@ -27,8 +27,8 @@ public class A6Q7 {
         for (int i = 0; i < 10; i++) {
             
         
-            for (int p = 2; (p * prime) - 2 < 1001; p++) {
-                primes[(p * prime) - 2] = 0;
+            for (int p = 2; primes.length; p++) {
+                primes[(p * p) - 2] = 0;
             }
             
         }
