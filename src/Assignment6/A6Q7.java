@@ -17,37 +17,38 @@ public class A6Q7 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int[] n = new int[1001];
-        int prime = 2;
-        //fills the array with numbers starting from 2 to the end of array
-        for (int i = 0; i < n.length; i++) {
+        int m = 1000;// amount of total number
+        int[] n = new int[m + 1];
+        int[] primes = new int[m + 1];
+
+        // fill the array with natural number
+        for (int i = 0; i < n.length - 2; i++) {
             n[i] = i + 2;
         }
 
-        //loops until there are no more primes
-        while (prime <= 1001) {
-            //find next prime
-            for (int p2 = prime + 1; p2 < n.length; p2++) {
-                //set new prime
-                if (n[p2-2]!=0){
-                    prime=n[p2-2];
-                    System.out.println(prime);
-                }
-                if (prime >= 1001) {
-                    
-                    break;
+        // j is the amount of primes
+        int j = 0;
 
+        // marking the non-primes
+        for (int i = 0; i < m; i++) {
+            if (n[i] != -1) {
+                for (j = 2 * n[i] - 2; j < m; j = j + n[i]) {
+                    n[j] = -1;
                 }
             }
-            //marks all multiples of current primes as 0
-            for (int p = 2; (p * prime) - 2 < n.length; p++) {
-                n[(p * prime) - 2] = 0;
-            }
-        
         }
- 
-        for (int i = 0; i < n.length; i++) {
-            System.out.println(n[i]);
+
+        // fill the prime array
+        j = 0;
+        for (int i = 0; i < m && j < primes.length; i++) {
+            if (n[i] != -1) {
+                primes[j++] = n[i];
+            }
+        }
+
+        // ** print the prime
+        for (int i = 0; i < j; i++) {
+            System.out.println(primes[i]);
         }
     }
 }
