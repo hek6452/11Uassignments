@@ -35,6 +35,7 @@ public class A6Q3 {
                 numbers[1]=temp;
 
             }
+            //print out numbers
             System.out.println("Your numbers in order are "+numbers[0] + ", " + numbers[1]);
 
         }

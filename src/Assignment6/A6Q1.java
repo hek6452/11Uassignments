@@ -39,7 +39,7 @@ public class A6Q1 {
      
         }
      
-
+        //print put average
         System.out.println("The class average is " + average);
 
     }

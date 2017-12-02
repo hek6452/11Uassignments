@@ -42,6 +42,7 @@ public class A6Q5 {
             }
 
         }
+        //print out marks in order
         System.out.println("Your marks in order are:");
         for (int i = 0; i < classnum.length; i++) {
             System.out.println(classnum[i]);

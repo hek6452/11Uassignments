@@ -27,7 +27,7 @@ public class A6Q4 {
             System.out.println("What are your averages?");
             classnum[i] = input.nextDouble();
         }
-        //Sort averages for 
+        //Sort averages
         for (int i = 0; i < classnum.length - 1; i++) {
             for (int j = i + 1; j < classnum.length; j++) {
                 //compare two numbers
@@ -42,6 +42,7 @@ public class A6Q4 {
             }
 
         }
+        //print out marks in order
         System.out.println("Your marks in order are:" );
         for (int i = 0; i < classnum.length; i++) {
             System.out.println(classnum[i]);
