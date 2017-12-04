@@ -2,9 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Methods;
+package Assignment7;
 
-import Assignment7.*;
 import java.util.Scanner;
 
 /**
@@ -30,9 +29,9 @@ public class MethodsExample {
 //send back the answer
         return answer;
     }
-    
-    public int addFive(int a){
-        a=a+5;
+
+    public int addFive(int a) {
+        a = a + 5;
         return a;
     }
 
@@ -55,16 +54,16 @@ public class MethodsExample {
         test.sayHello("Hello Jimmy");
         System.out.println("Please enter the length and the width of a rectangle");
         //store the 2 values
-        double a =in.nextDouble();
-        double b =in.nextDouble();
+        double a = in.nextDouble();
+        double b = in.nextDouble();
 
         //calculate the area
-        double area=test.areaOfRect(a, b);
+        double area = test.areaOfRect(a, b);
         //let user know the answer
-        System.out.println("The area is "+area);
-        
-        int num =10;
-        num=test.addFive(num);
-        System.out.println("Num is "+num);
+        System.out.println("The area is " + area);
+
+        int num = 10;
+        num = test.addFive(num);
+        System.out.println("Num is " + num);
     }
 }
