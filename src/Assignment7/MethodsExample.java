@@ -52,6 +52,8 @@ public class MethodsExample {
         test.sayHello(name);
         System.out.println("Hello " + name);
         test.sayHello("Hello Jimmy");
+        
+        
         System.out.println("Please enter the length and the width of a rectangle");
         //store the 2 values
         double a = in.nextDouble();
