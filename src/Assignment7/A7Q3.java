@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class A7Q3 {
 
     public void factors(int num) {
+        if(num%2==0) return;
         System.out.println("Your factors for you number are: ");
 
         /**
