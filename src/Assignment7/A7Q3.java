@@ -13,8 +13,15 @@ import java.util.Scanner;
 public class A7Q3 {
 
     public void factors(int num) {
-        if(num%2==0) return;
-        System.out.println("Your factors for you number are: ");
+        if (num % 2 == 0) {
+            System.out.println("Your factors for you number are: ");
+            System.out.println(2 + "");
+            num /= 2;
+        }
+
+
+
+
 
         /**
          * @param args the command line arguments
@@ -27,5 +34,6 @@ public class A7Q3 {
 
         System.out.println("Please enter your integer");
         int a = in.nextInt();
+        test.factors(a);
     }
 }
