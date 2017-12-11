@@ -18,6 +18,10 @@ public class A7Q3 {
             System.out.println(2 + "");
             num /= 2;
         }
+        if(num%3==0){
+            System.out.println(3+"");
+            num/=3;
+        }
 
 
 
