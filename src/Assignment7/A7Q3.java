@@ -11,18 +11,23 @@ import java.util.Scanner;
  * @author hek6452
  */
 public class A7Q3 {
-
+//sets 1 as factor for every number
+//if the number being divided by the factor is not a whole number then it does not display the number
+//then repeats until it reaches the input number
     public void factors(int num) {
-        if (num % 2 == 0) {
-            System.out.println("Your factors for you number are: ");
-            System.out.println(2 + "");
-            num /= 2;
-        }
-        if(num%3==0){
-            System.out.println(3+"");
-            num/=3;
-        }
+        if (num % 1 == 0) {
+            num /= 1;
+            for (int i = 1; i <= num; i++) {
 
+
+                {
+                    //print out the factors of the input number
+                    if (num % i == 0) {
+                        System.out.println("Your factors are: " + i);
+                    }
+                }
+            }
+        }
 
 
 
@@ -35,9 +40,10 @@ public class A7Q3 {
     public static void main(String[] args) {
         A7Q3 test = new A7Q3();
         Scanner in = new Scanner(System.in);
-
-        System.out.println("Please enter your integer");
+        //Asks for integer to be factored
+        System.out.println("Please enter your number");
         int a = in.nextInt();
+        //prints out using factors method
         test.factors(a);
     }
 }
