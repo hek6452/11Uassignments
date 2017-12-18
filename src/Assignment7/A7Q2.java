@@ -13,7 +13,9 @@ import java.util.Scanner;
 public class A7Q2 {
 
     public String examGrade(int grade) {
-
+       
+        // if the grade falls between the set windows then the corrosponding grade will 
+        //be returned
         String answer = "";
         if (grade < 50) {
             answer = "F";
@@ -43,9 +45,12 @@ public class A7Q2 {
         A7Q2 exam = new A7Q2();
 
         Scanner in = new Scanner(System.in);
+        //get grade
         System.out.println("Please enter your grade:");
         int grade = in.nextInt();
+        //put method into string
         String answer = exam.examGrade(grade);
+        //prints out the the answer
         System.out.println("Your grade is: " + answer);
 
 

@@ -49,7 +49,6 @@ public class PigLatinExample {
             }
         }
     }
-        StringBuilder builder = new StringBuilder
-                builder.insert(1,"ub");
+      
 }
 }

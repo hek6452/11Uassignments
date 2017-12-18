@@ -23,11 +23,13 @@ public class A7Q1 {
         // TODO code application logic here
          Scanner in = new Scanner(System.in);
           A7Q1 circleArea = new A7Q1();
+          //ask for the radius of circle
           System.out.println("Please enter the radius of circle");
           double r=in.nextDouble();
           double pi=3.14159;
-          
+          //math for area of circle
           double area=circleArea.areaOfCircle(r, pi);
+          //print out final area
            System.out.println("The area is "+area);
     }
 }
