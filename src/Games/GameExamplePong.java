@@ -39,6 +39,8 @@ public class GameExamplePong extends JComponent {
     int paddleSpeed = 5;
     boolean player1Up = false;
     boolean player1Down = false;
+    boolean player2Up = false;
+    boolean player2Down = false;
     int ballSize = 30;
     Rectangle ball = new Rectangle(WIDTH / 2 - ballSize / 2, HEIGHT / 2 - ballSize / 2, ballSize, ballSize); // GAME VARIABLES END HERE   
     int ballXDirection = 1;
@@ -137,12 +139,40 @@ public class GameExamplePong extends JComponent {
             }
 
             //move player 1
-            if (player1Up) {
+            if (player1Up && player1.y > 0) {
                 player1.y = player1.y - paddleSpeed;
-            } else if (player1Down) {
+            } else if (player1Down && player1.y + player1.height < HEIGHT) {
                 player1.y = player1.y + paddleSpeed;
             }
 
+            //move player 2
+            if (player2Up && player2.y > 0) {
+                player2.y = player2.y - paddleSpeed;
+            } else if (player2Down && player2.y + player2.height < HEIGHT) {
+                player2.y = player2.y + paddleSpeed;
+            }
+            
+            //did the ball hit paddle1
+            if(ball.intersects(player1)){
+            ballXDirection=ballXDirection*-1;
+            }
+            
+            //did the ball hit paddle2
+            if(ball.intersects(player2)){
+                ballXDirection=ballXDirection*-1;
+            }
+            
+            //ball hit left side of screen
+            if(ball.x<0){
+                ball.x=WIDTH/2-ball.width/2;
+                ball.y=HEIGHT/2-ball.height/2;
+            }
+            
+            //ball hit right side of screen
+            if(ball.x+ball.width>WIDTH){
+                
+            }
+            
             // GAME LOGIC ENDS HERE 
             // update the drawing (calls paintComponent)
             repaint();
@@ -196,27 +226,35 @@ public class GameExamplePong extends JComponent {
             //store the key being pressed
             int key = e.getKeyCode();
             //determine which key it is
-            if(key==KeyEvent.VK_W){
-                player1Up=true;
-            }else if (key==KeyEvent.VK_S){
-                player1Down=true;
+            if (key == KeyEvent.VK_W) {
+                player1Up = true;
+            } else if (key == KeyEvent.VK_S) {
+                player1Down = true;
+            } else if (key == KeyEvent.VK_UP) {
+                player2Up = true;
+            } else if (key == KeyEvent.VK_DOWN) {
+                player2Down = true;
+
             }
         }
 
         // if a key has been released
         @Override
         public void keyReleased(KeyEvent e) {
-               //store the key being pressed
+            //store the key being pressed
             int key = e.getKeyCode();
             //determine which key it is
-            if(key==KeyEvent.VK_W){
-                player1Up=false;
-            }else if (key==KeyEvent.VK_S){
-                player1Down=false;
+            if (key == KeyEvent.VK_W) {
+                player1Up = false;
+            } else if (key == KeyEvent.VK_S) {
+                player1Down = false;
+            } else if (key == KeyEvent.VK_UP) {
+                player2Up = false;
+            } else if (key == KeyEvent.VK_DOWN) {
+                player2Down = false;
             }
         }
-        }
-    
+    }
 
     /**
      * @param args the command line arguments
