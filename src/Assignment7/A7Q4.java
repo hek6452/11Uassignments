@@ -28,7 +28,7 @@ public class A7Q4 {
         A7Q4 test = new A7Q4();
         Scanner in = new Scanner(System.in);
         System.out.println("Please enter the initial amount, the the interest rate, and the number of years.");
-        //store the 2 values
+        //storing the values
         double a = in.nextDouble();
         double b = in.nextDouble();
         double c = in.nextDouble();
