@@ -34,9 +34,10 @@ public class SpongePants extends JComponent {
     // YOUR GAME VARIABLES WOULD GO HERE
     int paddleHeight = 100;
     int paddleWidth = 25;
-    Rectangle player1 = new Rectangle(300, 560, 175, 25);
-    Rectangle player2 = new Rectangle(WIDTH - 50 - paddleWidth, HEIGHT / 2 - paddleHeight / 2,
-            paddleWidth, paddleHeight);
+    Rectangle player = new Rectangle(300, 560, 175, 25);
+    int paddleSpeed = 10;
+    boolean playerLeft = false;
+    boolean playerRight = false;
 
     // GAME VARIABLES END HERE   
     // Constructor to create the Frame and place the panel in
@@ -76,10 +77,10 @@ public class SpongePants extends JComponent {
 
         // GAME DRAWING GOES HERE
         // draw the players
-        g.fillRect(player1.x, player1.y,
-                player1.width, player1.height);
-        g.fillRect(player2.x, player2.y,
-                player2.width, player2.height);
+        g.fillRect(player.x, player.y,
+                player.width, player.height);
+
+
 
 
 
@@ -112,6 +113,12 @@ public class SpongePants extends JComponent {
             // all your game rules and move is done in here
             // GAME LOGIC STARTS HERE 
 
+            //moving player paddle
+            if (playerLeft && player.x > 0) {
+                player.x = player.x - paddleSpeed;
+            } else if (playerRight && player.x + player.width < WIDTH) {
+                player.x = player.x + paddleSpeed;
+            }
 
             // GAME LOGIC ENDS HERE 
             // update the drawing (calls paintComponent)
@@ -163,11 +170,27 @@ public class SpongePants extends JComponent {
 
         @Override
         public void keyPressed(KeyEvent e) {
+            //store key being pressed
+            int key = e.getKeyCode();
+            //Determining key being pressed
+            if (key == KeyEvent.VK_LEFT) {
+                playerLeft = true;
+            } else if (key == KeyEvent.VK_RIGHT) {
+                playerRight = true;
+            }
         }
-
         // if a key has been released
+
         @Override
         public void keyReleased(KeyEvent e) {
+            // store the key being pressed
+            int key = e.getKeyCode();
+            // determine which key it is
+            if (key == KeyEvent.VK_LEFT) {
+                playerLeft = false;
+            } else if (key == KeyEvent.VK_RIGHT) {
+                playerRight = false;
+            }
         }
     }
 
