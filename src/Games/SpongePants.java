@@ -15,13 +15,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.util.Scanner;
 
 /**
  *
  * @author hek6452
  */
 public class SpongePants extends JComponent {
-
+    Rectangle[] Bricks1 = new Rectangle[14];
+    Rectangle[] Bricks2 = new Rectangle[14];
+    int BrickPlus=0;
+    
+    
     // Height and Width of our game
     static final int WIDTH = 800;
     static final int HEIGHT = 600;
@@ -32,6 +37,7 @@ public class SpongePants extends JComponent {
     long desiredFPS = 60;
     long desiredTime = (1000) / desiredFPS;
     // YOUR GAME VARIABLES WOULD GO HERE
+   //Create player paddle
     int paddleHeight = 100;
     int paddleWidth = 25;
     Rectangle player = new Rectangle(300, 560, 175, 25);
@@ -39,6 +45,7 @@ public class SpongePants extends JComponent {
     boolean playerLeft = false;
     boolean playerRight = false;
 
+    
     // GAME VARIABLES END HERE   
     // Constructor to create the Frame and place the panel in
     // You will learn more about this in Grade 12 :)
@@ -79,6 +86,15 @@ public class SpongePants extends JComponent {
         // draw the players
         g.fillRect(player.x, player.y,
                 player.width, player.height);
+        //Draw Bricks row1
+        for(int i = 0; i < 14;i++){
+        g.fillRect(Bricks1[i].x, Bricks1[i].y, Bricks1[i].width, Bricks1[i].height);
+        
+        //Draw Bricks row2
+         for(int q = 0; q < 14;q++){
+        g.fillRect(Bricks2[q].x, Bricks2[q].y, Bricks2[q].width, Bricks2[q].height);
+         }
+        }
 
 
 
@@ -91,6 +107,10 @@ public class SpongePants extends JComponent {
     // This is run before the game loop begins!
     public void preSetup() {
         // Any of your pre setup before the loop starts should go here
+        Bricks1[0] = new Rectangle (20,250,50,25);
+        for(int i = 1; i < Bricks1.length;i++){
+            Bricks1[i] = new Rectangle(Bricks1[i-1].x + 55, Bricks1[i-1].y, Bricks1[i-1].width, Bricks1[i-1].height);
+        }
     }
 
     // The main game loop
