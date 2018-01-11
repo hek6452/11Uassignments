@@ -30,20 +30,18 @@ public class SpongePants extends JComponent {
     Rectangle[] Bricks5 = new Rectangle[14];
     Rectangle[] Bricks6 = new Rectangle[14];
     int BrickPlus = 0;
-
     // Height and Width of our game
     static final int WIDTH = 800;
     static final int HEIGHT = 600;
     //Title of the window
     String title = "My Game";
     // sets the framerate and delay for our game
-    // you just need to select an approproate framerate
+    // Set framerate
     long desiredFPS = 60;
     long desiredTime = (1000) / desiredFPS;
     // YOUR GAME VARIABLES WOULD GO HERE
     //Set color
     Color brickOrange = new Color(255, 153, 102);
-    
     //Create player paddle
     int paddleHeight = 100;
     int paddleWidth = 25;
@@ -51,10 +49,9 @@ public class SpongePants extends JComponent {
     int paddleSpeed = 10;
     boolean playerLeft = false;
     boolean playerRight = false;
-    
     //create ball
-     int ballSize = 30;
-    Rectangle ball = new Rectangle(375, 525 ,ballSize, ballSize);
+    int ballSize = 30;
+    Rectangle ball = new Rectangle(375, 525, ballSize, ballSize);
     int ballXDirection = 1;
     int ballYDirection = -1;
     int ballSpeed = 2;
@@ -102,30 +99,32 @@ public class SpongePants extends JComponent {
                 player.width, player.height);
         //Draw ball
         g.fillRect(ball.x, ball.y, ball.width, ball.height);
-        
+
         //brick colors
-         g.setColor(brickOrange);
+        g.setColor(brickOrange);
         //Draw Bricks row1
         for (int i = 0; i < 14; i++) {
             g.fillRect(Bricks1[i].x, Bricks1[i].y, Bricks1[i].width, Bricks1[i].height);
-
-            //Draw Bricks row2
-            for (int q = 0; q < 14; q++) {
-                g.fillRect(Bricks2[q].x, Bricks2[q].y, Bricks2[q].width, Bricks2[q].height);
-            }
-            for (int q = 0; q < 14; q++) {
-                g.fillRect(Bricks3[q].x, Bricks3[q].y, Bricks3[q].width, Bricks3[q].height);
-            }
-            for (int q = 0; q < 14; q++) {
-                g.fillRect(Bricks4[q].x, Bricks4[q].y, Bricks4[q].width, Bricks4[q].height);
-            }
-            for (int q = 0; q < 14; q++) {
-                g.fillRect(Bricks5[q].x, Bricks5[q].y, Bricks5[q].width, Bricks5[q].height);
-            }
-            for (int q = 0; q < 14; q++) {
-                g.fillRect(Bricks6[q].x, Bricks6[q].y, Bricks6[q].width, Bricks6[q].height);
-            }
         }
+        //Draw Bricks row2
+        for (int q = 0; q < 14; q++) {
+            g.fillRect(Bricks2[q].x, Bricks2[q].y, Bricks2[q].width, Bricks2[q].height);
+        }
+        //Row 3
+        for (int q = 0; q < 14; q++) {
+            g.fillRect(Bricks3[q].x, Bricks3[q].y, Bricks3[q].width, Bricks3[q].height);
+        }
+        //Row 4
+        for (int q = 0; q < 14; q++) {
+            g.fillRect(Bricks4[q].x, Bricks4[q].y, Bricks4[q].width, Bricks4[q].height);
+        }
+        for (int q = 0; q < 14; q++) {
+            g.fillRect(Bricks5[q].x, Bricks5[q].y, Bricks5[q].width, Bricks5[q].height);
+        }
+        for (int q = 0; q < 14; q++) {
+            g.fillRect(Bricks6[q].x, Bricks6[q].y, Bricks6[q].width, Bricks6[q].height);
+        }
+
 
         // GAME DRAWING ENDS HERE
     }
@@ -154,7 +153,7 @@ public class SpongePants extends JComponent {
         for (int q = 1; q < Bricks5.length; q++) {
             Bricks5[q] = new Rectangle(Bricks5[q - 1].x + 55, Bricks5[q - 1].y, Bricks5[q - 1].width, Bricks5[q - 1].height);
         }
-         Bricks6[0] = new Rectangle(20, 100, 50, 25);
+        Bricks6[0] = new Rectangle(20, 100, 50, 25);
         for (int q = 1; q < Bricks6.length; q++) {
             Bricks6[q] = new Rectangle(Bricks6[q - 1].x + 55, Bricks6[q - 1].y, Bricks6[q - 1].width, Bricks6[q - 1].height);
         }
@@ -179,6 +178,42 @@ public class SpongePants extends JComponent {
 
             // all your game rules and move is done in here
             // GAME LOGIC STARTS HERE 
+
+            // move the ball
+            ball.x = ball.x + ballXDirection * ballSpeed;
+            ball.y = ball.y + ballYDirection * ballSpeed;
+
+            // get ball to bounce off right side
+            // bottom of ball hit right side of screen
+            if (ball.x + ball.width >= WIDTH) {
+                // change x direction
+                ballXDirection = ballXDirection * -1;
+            }
+             // bottom of ball hit left side of screen
+            if (ball.x <= 0) {
+                // change x direction
+                ballXDirection = ballXDirection * -1;
+            }
+
+            // top of ball hit top of screen
+            if (ball.y <= 0) {
+                ballYDirection = ballYDirection * -1;
+            }
+            // did the ball hit the player paddle
+            if (ball.intersects(player)) {
+                ballYDirection = ballYDirection * -1;
+            }
+            // check for collisions
+            for (int i = 0; i < Bricks1.length; i++) {
+                // did the player hit a brick?
+                if (ball.intersects(Bricks1[i])) {
+                    Bricks1[i].x = 20000;
+                }
+            }
+
+
+
+
             //moving player paddle
             if (playerLeft && player.x > 0) {
                 player.x = player.x - paddleSpeed;
