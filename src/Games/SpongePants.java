@@ -22,11 +22,15 @@ import java.util.Scanner;
  * @author hek6452
  */
 public class SpongePants extends JComponent {
+
     Rectangle[] Bricks1 = new Rectangle[14];
     Rectangle[] Bricks2 = new Rectangle[14];
-    int BrickPlus=0;
-    
-    
+    Rectangle[] Bricks3 = new Rectangle[14];
+    Rectangle[] Bricks4 = new Rectangle[14];
+    Rectangle[] Bricks5 = new Rectangle[14];
+    Rectangle[] Bricks6 = new Rectangle[14];
+    int BrickPlus = 0;
+
     // Height and Width of our game
     static final int WIDTH = 800;
     static final int HEIGHT = 600;
@@ -37,15 +41,24 @@ public class SpongePants extends JComponent {
     long desiredFPS = 60;
     long desiredTime = (1000) / desiredFPS;
     // YOUR GAME VARIABLES WOULD GO HERE
-   //Create player paddle
+    //Set color
+    Color brickOrange = new Color(255, 153, 102);
+    
+    //Create player paddle
     int paddleHeight = 100;
     int paddleWidth = 25;
     Rectangle player = new Rectangle(300, 560, 175, 25);
     int paddleSpeed = 10;
     boolean playerLeft = false;
     boolean playerRight = false;
-
     
+    //create ball
+     int ballSize = 30;
+    Rectangle ball = new Rectangle(375, 525 ,ballSize, ballSize);
+    int ballXDirection = 1;
+    int ballYDirection = -1;
+    int ballSpeed = 2;
+
     // GAME VARIABLES END HERE   
     // Constructor to create the Frame and place the panel in
     // You will learn more about this in Grade 12 :)
@@ -83,22 +96,36 @@ public class SpongePants extends JComponent {
         g.clearRect(0, 0, WIDTH, HEIGHT);
 
         // GAME DRAWING GOES HERE
+
         // draw the players
         g.fillRect(player.x, player.y,
                 player.width, player.height);
-        //Draw Bricks row1
-        for(int i = 0; i < 14;i++){
-        g.fillRect(Bricks1[i].x, Bricks1[i].y, Bricks1[i].width, Bricks1[i].height);
+        //Draw ball
+        g.fillRect(ball.x, ball.y, ball.width, ball.height);
         
-        //Draw Bricks row2
-         for(int q = 0; q < 14;q++){
-        g.fillRect(Bricks2[q].x, Bricks2[q].y, Bricks2[q].width, Bricks2[q].height);
-         }
+        //brick colors
+         g.setColor(brickOrange);
+        //Draw Bricks row1
+        for (int i = 0; i < 14; i++) {
+            g.fillRect(Bricks1[i].x, Bricks1[i].y, Bricks1[i].width, Bricks1[i].height);
+
+            //Draw Bricks row2
+            for (int q = 0; q < 14; q++) {
+                g.fillRect(Bricks2[q].x, Bricks2[q].y, Bricks2[q].width, Bricks2[q].height);
+            }
+            for (int q = 0; q < 14; q++) {
+                g.fillRect(Bricks3[q].x, Bricks3[q].y, Bricks3[q].width, Bricks3[q].height);
+            }
+            for (int q = 0; q < 14; q++) {
+                g.fillRect(Bricks4[q].x, Bricks4[q].y, Bricks4[q].width, Bricks4[q].height);
+            }
+            for (int q = 0; q < 14; q++) {
+                g.fillRect(Bricks5[q].x, Bricks5[q].y, Bricks5[q].width, Bricks5[q].height);
+            }
+            for (int q = 0; q < 14; q++) {
+                g.fillRect(Bricks6[q].x, Bricks6[q].y, Bricks6[q].width, Bricks6[q].height);
+            }
         }
-
-
-
-
 
         // GAME DRAWING ENDS HERE
     }
@@ -107,9 +134,29 @@ public class SpongePants extends JComponent {
     // This is run before the game loop begins!
     public void preSetup() {
         // Any of your pre setup before the loop starts should go here
-        Bricks1[0] = new Rectangle (20,250,50,25);
-        for(int i = 1; i < Bricks1.length;i++){
-            Bricks1[i] = new Rectangle(Bricks1[i-1].x + 55, Bricks1[i-1].y, Bricks1[i-1].width, Bricks1[i-1].height);
+        Bricks1[0] = new Rectangle(20, 250, 50, 25);
+        for (int i = 1; i < Bricks1.length; i++) {
+            Bricks1[i] = new Rectangle(Bricks1[i - 1].x + 55, Bricks1[i - 1].y, Bricks1[i - 1].width, Bricks1[i - 1].height);
+        }
+        Bricks2[0] = new Rectangle(20, 220, 50, 25);
+        for (int q = 1; q < Bricks2.length; q++) {
+            Bricks2[q] = new Rectangle(Bricks2[q - 1].x + 55, Bricks2[q - 1].y, Bricks2[q - 1].width, Bricks2[q - 1].height);
+        }
+        Bricks3[0] = new Rectangle(20, 190, 50, 25);
+        for (int q = 1; q < Bricks3.length; q++) {
+            Bricks3[q] = new Rectangle(Bricks3[q - 1].x + 55, Bricks3[q - 1].y, Bricks3[q - 1].width, Bricks3[q - 1].height);
+        }
+        Bricks4[0] = new Rectangle(20, 160, 50, 25);
+        for (int q = 1; q < Bricks4.length; q++) {
+            Bricks4[q] = new Rectangle(Bricks4[q - 1].x + 55, Bricks4[q - 1].y, Bricks4[q - 1].width, Bricks4[q - 1].height);
+        }
+        Bricks5[0] = new Rectangle(20, 130, 50, 25);
+        for (int q = 1; q < Bricks5.length; q++) {
+            Bricks5[q] = new Rectangle(Bricks5[q - 1].x + 55, Bricks5[q - 1].y, Bricks5[q - 1].width, Bricks5[q - 1].height);
+        }
+         Bricks6[0] = new Rectangle(20, 100, 50, 25);
+        for (int q = 1; q < Bricks6.length; q++) {
+            Bricks6[q] = new Rectangle(Bricks6[q - 1].x + 55, Bricks6[q - 1].y, Bricks6[q - 1].width, Bricks6[q - 1].height);
         }
     }
 
@@ -132,7 +179,6 @@ public class SpongePants extends JComponent {
 
             // all your game rules and move is done in here
             // GAME LOGIC STARTS HERE 
-
             //moving player paddle
             if (playerLeft && player.x > 0) {
                 player.x = player.x - paddleSpeed;
