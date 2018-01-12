@@ -42,9 +42,12 @@ public class SpongePants extends JComponent {
     // YOUR GAME VARIABLES WOULD GO HERE
 
     //Set brick life 1 color
-    Color brickRed = new Color(153, 51, 51);
+    Color brickDarkred = new Color(127, 2, 2);
     //set brick life 2 color
-    Color brickOrange = new Color(255, 136, 77);
+   Color brickRed = new Color(153, 51, 51);
+    //Brick life 3 colour
+     Color brickOrange = new Color(255, 136, 77);
+     
     //Create player paddle
     int paddleHeight = 100;
     int paddleWidth = 25;
@@ -100,6 +103,16 @@ public class SpongePants extends JComponent {
         g.clearRect(0, 0, WIDTH, HEIGHT);
 
         // GAME DRAWING GOES HERE
+        //lives
+          if(brickLives==3){
+                g.setColor(brickDarkred);
+            }
+          if(brickLives==2){
+              g.setColor(brickRed);
+          }
+          if(brickLives==1){
+              g.setColor(brickOrange);
+          }
         // draw the players
         g.fillRect(player.x, player.y,
                 player.width, player.height);
@@ -130,7 +143,8 @@ public class SpongePants extends JComponent {
         for (int q = 0; q < 14; q++) {
             g.fillRect(Bricks6[q].x, Bricks6[q].y, Bricks6[q].width, Bricks6[q].height);
         }
-
+ 
+          
         // GAME DRAWING ENDS HERE
     }
 
@@ -157,6 +171,7 @@ public class SpongePants extends JComponent {
         Bricks5[0] = new Rectangle(20, 130, 50, 25);
         for (int q = 1; q < Bricks5.length; q++) {
             Bricks5[q] = new Rectangle(Bricks5[q - 1].x + 55, Bricks5[q - 1].y, Bricks5[q - 1].width, Bricks5[q - 1].height);
+         
         }
         Bricks6[0] = new Rectangle(20, 100, 50, 25);
         for (int q = 1; q < Bricks6.length; q++) {
@@ -183,6 +198,9 @@ public class SpongePants extends JComponent {
 
             // all your game rules and move is done in here
             // GAME LOGIC STARTS HERE 
+           
+            //Brick lives
+           
             // move the ball
             ball.x = ball.x + ballXDirection * ballSpeed;
             ball.y = ball.y + ballYDirection * ballSpeed;
@@ -207,22 +225,17 @@ public class SpongePants extends JComponent {
             if (ball.intersects(player)) {
                 ballYDirection = ballYDirection * -1;
             }
-            // check for collisions for Bricks1 array (First row)
+           // check for collisions for Bricks1 array (First row)
             for (int i = 0; i < Bricks1.length; i++) {
                 // did the player hit a brick?
                 if (ball.intersects(Bricks1[i]) && brickLives > 0) {
-                    Color(brickRed);wd
+                    brickLives=brickLives-1;
+                    ballYDirection = ballYDirection * -1;
                 } else {
                     Bricks1[i].x = 20000;
                 }
             }
-            // check for collisions for Bricks2 array (second row)
-            for (int i = 0; i < Bricks2.length; i++) {
-                // did the player hit a brick?
-                if (ball.intersects(Bricks2[i])) {
-                    Bricks2[i].x = 20000;
-                }
-            }
+           
 
             //moving player paddle
             if (playerLeft && player.x > 0) {
@@ -230,6 +243,7 @@ public class SpongePants extends JComponent {
             } else if (playerRight && player.x + player.width < WIDTH) {
                 player.x = player.x + paddleSpeed;
             }
+          
 
             // GAME LOGIC ENDS HERE 
             // update the drawing (calls paintComponent)
