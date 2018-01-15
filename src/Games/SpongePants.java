@@ -111,7 +111,7 @@ public class SpongePants extends JComponent {
         g.fillRect(ball.x, ball.y, ball.width, ball.height);
 
         //brick colors
-        //g.setColor(brickRed);
+        g.setColor(brickDarkred);
         //Draw Bricks row1
         for (int i = 0; i < Bricks1.length; i++) {
             if (Bricks1[i] != null) {
@@ -208,25 +208,25 @@ public class SpongePants extends JComponent {
             Bricks1[i] = new Rectangle(Bricks1[i - 1].x + 55, Bricks1[i - 1].y, Bricks1[i - 1].width, Bricks1[i - 1].height);
         }
         Bricks2[0] = new Rectangle(20, 220, 50, 25);
-        for (int q = 1; q < Bricks2.length; q++) {
-            Bricks2[q] = new Rectangle(Bricks2[q - 1].x + 55, Bricks2[q - 1].y, Bricks2[q - 1].width, Bricks2[q - 1].height);
+        for (int i = 1; i < Bricks2.length; i++) {
+            Bricks2[i] = new Rectangle(Bricks2[i - 1].x + 55, Bricks2[i - 1].y, Bricks2[i - 1].width, Bricks2[i - 1].height);
         }
         Bricks3[0] = new Rectangle(20, 190, 50, 25);
-        for (int q = 1; q < Bricks3.length; q++) {
-            Bricks3[q] = new Rectangle(Bricks3[q - 1].x + 55, Bricks3[q - 1].y, Bricks3[q - 1].width, Bricks3[q - 1].height);
+        for (int i = 1; i < Bricks3.length; i++) {
+            Bricks3[i] = new Rectangle(Bricks3[i - 1].x + 55, Bricks3[i - 1].y, Bricks3[i - 1].width, Bricks3[i - 1].height);
         }
         Bricks4[0] = new Rectangle(20, 160, 50, 25);
-        for (int q = 1; q < Bricks4.length; q++) {
-            Bricks4[q] = new Rectangle(Bricks4[q - 1].x + 55, Bricks4[q - 1].y, Bricks4[q - 1].width, Bricks4[q - 1].height);
+        for (int i = 1; i < Bricks4.length; i++) {
+            Bricks4[i] = new Rectangle(Bricks4[i - 1].x + 55, Bricks4[i - 1].y, Bricks4[i - 1].width, Bricks4[i - 1].height);
         }
         Bricks5[0] = new Rectangle(20, 130, 50, 25);
-        for (int q = 1; q < Bricks5.length; q++) {
-            Bricks5[q] = new Rectangle(Bricks5[q - 1].x + 55, Bricks5[q - 1].y, Bricks5[q - 1].width, Bricks5[q - 1].height);
+        for (int i = 1; i < Bricks5.length; i++) {
+            Bricks5[i] = new Rectangle(Bricks5[i - 1].x + 55, Bricks5[i - 1].y, Bricks5[i - 1].width, Bricks5[i - 1].height);
 
         }
         Bricks6[0] = new Rectangle(20, 100, 50, 25);
-        for (int q = 1; q < Bricks6.length; q++) {
-            Bricks6[q] = new Rectangle(Bricks6[q - 1].x + 55, Bricks6[q - 1].y, Bricks6[q - 1].width, Bricks6[q - 1].height);
+        for (int i = 1; i < Bricks6.length; i++) {
+            Bricks6[i] = new Rectangle(Bricks6[i - 1].x + 55, Bricks6[i - 1].y, Bricks6[i - 1].width, Bricks6[i - 1].height);
         }
     }
 
