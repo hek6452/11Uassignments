@@ -22,18 +22,30 @@ import java.util.Scanner;
  * @author hek6452
  */
 public class SpongePants extends JComponent {
+
     //Brick row collision method
-    public void paddleSidecollision () {
-         // did the ball hit the player paddle
-            if (ball.intersects(player)) {
-                ballYDirection = ballYDirection * -1;
-                ballXDirection=ballXDirection*+1;
-            }
-}
+    public void paddleSidecollision() {
+        // did the ball hit the player paddle
+        if (ball.intersects(playerleft)) {
+            ballYDirection = ballYDirection * -1;
+            ballXDirection = ballXDirection * +1;
+        }
+        // did the ball hit the player paddle
+        if (ball.intersects(playermid)) {
+            ballYDirection = ballYDirection * -1;
+            ballXDirection = ballXDirection * +1;
+        }
+        // did the ball hit the player paddle
+        if (ball.intersects(playerright)) {
+            ballYDirection = ballYDirection * -1;
+            ballXDirection = ballXDirection * +1;
+        }
+        
+    }
 
     public void brickCollision1(Rectangle[] bricks) {
         //side paddle physics
-        
+
         // check for collisions for Bricks1 array (First row)
         for (int i = 0; i < bricks.length; i++) {
             // did the ball hit a brick?
@@ -61,7 +73,7 @@ public class SpongePants extends JComponent {
                     bricks[i].x = 20000;
                 }
                 ballYDirection = +1;
-                
+
             }
         }
     }
@@ -160,13 +172,15 @@ public class SpongePants extends JComponent {
     //Set brick life 1 color
     Color brickDarkred = new Color(127, 2, 2);
     //set brick life 2 color
-    Color brickPink= new Color(255, 0, 102);
+    Color brickPink = new Color(255, 0, 102);
     //Brick life 3 colour
     Color brickOrange = new Color(255, 153, 51);
     //Create player paddle
     int paddleHeight = 100;
     int paddleWidth = 25;
-    Rectangle player = new Rectangle(300, 560, 175, 25);
+    Rectangle playerleft = new Rectangle(100, 560, 175, 25);
+    Rectangle playermid = new Rectangle(100, 560, 175, 25);
+    Rectangle playerright = new Rectangle(100, 560, 175, 25);
     int paddleSpeed = 10;
     boolean playerLeft = false;
     boolean playerRight = false;
@@ -176,8 +190,8 @@ public class SpongePants extends JComponent {
     int ballXDirection = 1;
     int ballYDirection = -1;
     int ballSpeed = 4;
-    int dx=(int)(4*Math.cos(Math.toRadians(45)));
-    int dy=(int)(4*Math.sin(Math.toRadians(45)));
+    int dx = (int) (4 * Math.cos(Math.toRadians(45)));
+    int dy = (int) (4 * Math.sin(Math.toRadians(45)));
     //Amount of brick lives
     int brickLives = 2;
 
@@ -219,9 +233,15 @@ public class SpongePants extends JComponent {
 
         // GAME DRAWING GOES HERE
         //lives
-        // draw the players
-        g.fillRect(player.x, player.y,
-                player.width, player.height);
+        // draw the player portions
+        g.fillRect(playerleft.x, playerleft.y,
+                playerleft.width, playerleft.height);
+        g.fillRect(playermid.x, playermid.y,
+                playermid.width, playermid.height);
+
+        g.fillRect(playerright.x, playerright.y,
+                playerright.width, playerright.height);
+
         //Draw ball
         g.fillRect(ball.x, ball.y, ball.width, ball.height);
 
@@ -394,7 +414,7 @@ public class SpongePants extends JComponent {
                 ballYDirection = ballYDirection * -1;
             }
             // did the ball hit the player paddle
-           paddleSidecollision();
+            paddleSidecollision();
             //Get ball to change velocity in relation to paddle
 
             // check for collisions for brick arrays
@@ -405,11 +425,23 @@ public class SpongePants extends JComponent {
             brickCollision5(Bricks5);
             brickCollision6(Bricks6);
 
-            //moving player paddle
-            if (playerLeft && player.x > 0) {
-                player.x = player.x - paddleSpeed;
-            } else if (playerRight && player.x + player.width < WIDTH) {
-                player.x = player.x + paddleSpeed;
+            //moving player paddle left portion
+            if (playerLeft && playerleft.x > 0) {
+                playerleft.x = playerleft.x - paddleSpeed;
+            } else if (playerRight && playerleft.x + playerleft.width < WIDTH) {
+                playerleft.x = playerleft.x + paddleSpeed;
+            }
+             //moving player paddle middle portion
+            if (playerLeft && playermid.x >100) {
+                playermid.x = playermid.x - paddleSpeed;
+            } else if (playerRight && playermid.x + playermid.width < WIDTH) {
+                playermid.x = playermid.x + paddleSpeed;
+            }
+             //moving player paddle right portion
+            if (playerLeft && playerright.x >200) {
+                playerright.x = playerright.x - paddleSpeed;
+            } else if (playerRight && playerright.x + playerright.width < WIDTH) {
+                playerright.x = playerright.x + paddleSpeed;
             }
 
             // GAME LOGIC ENDS HERE 
