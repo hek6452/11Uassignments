@@ -178,9 +178,9 @@ public class SpongePants extends JComponent {
     //Create player paddle
     int paddleHeight = 100;
     int paddleWidth = 25;
-    Rectangle playerleft = new Rectangle(100, 560, 175, 25);
-    Rectangle playermid = new Rectangle(100, 560, 175, 25);
-    Rectangle playerright = new Rectangle(100, 560, 175, 25);
+    Rectangle playerleft = new Rectangle(300, 560, 60, 25);
+    Rectangle playermid = new Rectangle(360, 560, 60, 25);
+    Rectangle playerright = new Rectangle(420, 560, 60, 25);
     int paddleSpeed = 10;
     boolean playerLeft = false;
     boolean playerRight = false;
@@ -234,11 +234,15 @@ public class SpongePants extends JComponent {
         // GAME DRAWING GOES HERE
         //lives
         // draw the player portions
+        g.setColor(brickDarkred);
         g.fillRect(playerleft.x, playerleft.y,
                 playerleft.width, playerleft.height);
+       
+        g.setColor(brickPink);
         g.fillRect(playermid.x, playermid.y,
                 playermid.width, playermid.height);
 
+        g.setColor(brickOrange);
         g.fillRect(playerright.x, playerright.y,
                 playerright.width, playerright.height);
 
@@ -428,17 +432,17 @@ public class SpongePants extends JComponent {
             //moving player paddle left portion
             if (playerLeft && playerleft.x > 0) {
                 playerleft.x = playerleft.x - paddleSpeed;
-            } else if (playerRight && playerleft.x + playerleft.width < WIDTH) {
+            } else if (playerRight && playerleft.x + playerleft.width < 680) {
                 playerleft.x = playerleft.x + paddleSpeed;
             }
              //moving player paddle middle portion
-            if (playerLeft && playermid.x >100) {
+            if (playerLeft && playermid.x >60) {
                 playermid.x = playermid.x - paddleSpeed;
-            } else if (playerRight && playermid.x + playermid.width < WIDTH) {
+            } else if (playerRight && playermid.x + playermid.width < 740) {
                 playermid.x = playermid.x + paddleSpeed;
             }
              //moving player paddle right portion
-            if (playerLeft && playerright.x >200) {
+            if (playerLeft && playerright.x >120) {
                 playerright.x = playerright.x - paddleSpeed;
             } else if (playerRight && playerright.x + playerright.width < WIDTH) {
                 playerright.x = playerright.x + paddleSpeed;
