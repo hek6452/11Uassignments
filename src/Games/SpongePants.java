@@ -241,12 +241,13 @@ public class SpongePants extends JComponent {
     //Amount of brick lives
     int brickLives = 2;
     //set player score
-     int playerScore = 0;
-     //create font
-     Font biggerFont = new Font("arial", Font.BOLD, 42);
-     Font startTitle = new Font("arial", Font.BOLD, 100);
-     //start screen title
-     
+    int playerScore = 0;
+    //create font
+    Font biggerFont = new Font("arial", Font.BOLD, 42);
+    Font startTitle = new Font("arial", Font.BOLD, 100);
+    Font stoStart = new Font("arial", Font.BOLD, 40);
+    Font pause = new Font("arial", Font.BOLD, 100);
+    //start screen title
 
     // GAME VARIABLES END HERE   
     // Constructor to create the Frame and place the panel in
@@ -281,17 +282,19 @@ public class SpongePants extends JComponent {
     // NOTE: This is already double buffered!(helps with framerate/speed)
     @Override
     public void paintComponent(Graphics g) {
-    //start screen
-      g.setFont(startTitle);     
-      g.drawString("Smash Ball" , 150,300 );
-    //Start the game
+        //start screen
+        g.setFont(startTitle);
+        g.drawString("Smash Ball", 150, 300);
+        g.setFont(stoStart);
+        g.drawString("Press S to start", 250, 400);
+        //Start the game
         if (gameStart && !gamePause) {
             // always clear the screen first!
             g.clearRect(0, 0, WIDTH, HEIGHT);
             // GAME DRAWING GOES HERE
             // draw scores
-        g.setFont(biggerFont);
-        g.drawString("" + playerScore, WIDTH/2, 50);
+            g.setFont(biggerFont);
+            g.drawString("" + playerScore, WIDTH / 2, 50);
             // draw the player portions
             //g.setColor(brickDarkred);
             g.fillRect(playerleft.x, playerleft.y,
@@ -390,8 +393,9 @@ public class SpongePants extends JComponent {
                     g.fillRect(Bricks6[i].x, Bricks6[i].y, Bricks6[i].width, Bricks6[i].height);
                 }
             }
-        } else {
-
+        } else{
+            
+            
         }
     }
 
