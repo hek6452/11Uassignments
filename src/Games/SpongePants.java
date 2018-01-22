@@ -40,7 +40,7 @@ public class SpongePants extends JComponent {
                 ballXDirection = ballXDirection * +1;
             }
             ballYDirection = -2;
-            ballSpeed=3;
+            ballSpeed = 4;
         }
         // did the ball hit the player paddle
         if (ball.intersects(playerright)) {
@@ -66,7 +66,11 @@ public class SpongePants extends JComponent {
                 if (lives1[i] < 0) {
                     bricks[i].x = 20000;
                 }
-                ballYDirection = +1;
+                ballYDirection = ballYDirection * -1;
+                ballSpeed = 4;
+            }
+            {
+                ballYDirection = ballYDirection * -1;
             }
         }
     }
@@ -82,8 +86,12 @@ public class SpongePants extends JComponent {
                 if (lives2[i] < 0) {
                     bricks[i].x = 20000;
                 }
-                ballYDirection = +1;
+                ballYDirection = ballYDirection * -1;
+                ballSpeed = 4;
 
+            }
+            {
+                ballYDirection = ballYDirection * -1;
             }
         }
     }
@@ -99,7 +107,11 @@ public class SpongePants extends JComponent {
                 if (lives3[i] < 0) {
                     bricks[i].x = 20000;
                 }
-                ballYDirection = +1;
+                ballYDirection = ballYDirection * -1;
+                ballSpeed = 4;
+            }
+            {
+                ballYDirection = ballYDirection * -1;
             }
         }
     }
@@ -115,7 +127,11 @@ public class SpongePants extends JComponent {
                 if (lives4[i] < 0) {
                     bricks[i].x = 20000;
                 }
-                ballYDirection = +1;
+                ballYDirection = ballYDirection * -1;
+                ballSpeed = 4;
+            }
+            {
+                ballYDirection = ballYDirection * -1;
             }
         }
     }
@@ -131,7 +147,11 @@ public class SpongePants extends JComponent {
                 if (lives5[i] < 0) {
                     bricks[i].x = 20000;
                 }
-                ballYDirection = +1;
+                ballYDirection = ballYDirection * -1;
+                ballSpeed = 4;
+            }
+            {
+                ballYDirection = ballYDirection * -1;
             }
         }
     }
@@ -147,8 +167,13 @@ public class SpongePants extends JComponent {
                 if (lives6[i] < 0) {
                     bricks[i].x = 20000;
                 }
-                ballYDirection = +1;
+                ballYDirection = ballYDirection * -1;
+                ballSpeed = 4;
             }
+            {
+                ballYDirection = ballYDirection * -1;
+            }
+
         }
     }
 
@@ -194,14 +219,16 @@ public class SpongePants extends JComponent {
     int paddleSpeed = 10;
     boolean playerLeft = false;
     boolean playerRight = false;
+    boolean gameStart = false;
+    boolean gamePause = false;
     //create ball
     int ballSize = 20;
     Rectangle ball = new Rectangle(375, 525, ballSize, ballSize);
     int ballXDirection = 1;
     int ballYDirection = -1;
     int ballSpeed = 4;
-    int dx = (int) (4 * Math.cos(Math.toRadians(45)));
-    int dy = (int) (4 * Math.sin(Math.toRadians(45)));
+    //int dx = (int) (4 * Math.cos(Math.toRadians(45)));
+    //int dy = (int) (4 * Math.sin(Math.toRadians(45)));
     //Amount of brick lives
     int brickLives = 2;
 
@@ -238,110 +265,111 @@ public class SpongePants extends JComponent {
     // NOTE: This is already double buffered!(helps with framerate/speed)
     @Override
     public void paintComponent(Graphics g) {
-        // always clear the screen first!
-        g.clearRect(0, 0, WIDTH, HEIGHT);
+        while (gameStart && gamePause) {
+            // always clear the screen first!
+            g.clearRect(0, 0, WIDTH, HEIGHT);
 
-        // GAME DRAWING GOES HERE
-        //lives
-        // draw the player portions
-        g.setColor(brickDarkred);
-        g.fillRect(playerleft.x, playerleft.y,
-                playerleft.width, playerleft.height);
+            // GAME DRAWING GOES HERE
+            //lives
+            // draw the player portions
+            g.setColor(brickDarkred);
+            g.fillRect(playerleft.x, playerleft.y,
+                    playerleft.width, playerleft.height);
 
-        g.setColor(brickPink);
-        g.fillRect(playermid.x, playermid.y,
-                playermid.width, playermid.height);
+            g.setColor(brickPink);
+            g.fillRect(playermid.x, playermid.y,
+                    playermid.width, playermid.height);
 
-        g.setColor(brickOrange);
-        g.fillRect(playerright.x, playerright.y,
-                playerright.width, playerright.height);
+            g.setColor(brickOrange);
+            g.fillRect(playerright.x, playerright.y,
+                    playerright.width, playerright.height);
 
-        //Draw ball
-        g.fillRect(ball.x, ball.y, ball.width, ball.height);
+            //Draw ball
+            g.fillRect(ball.x, ball.y, ball.width, ball.height);
 
-        //brick colors
-        g.setColor(brickDarkred);
-        //Draw Bricks row1
-        for (int i = 0; i < Bricks1.length; i++) {
-            if (Bricks1[i] != null) {
-                if (lives1[i] == 2) {
-                    g.setColor(brickDarkred);
+            //brick colors
+            g.setColor(brickDarkred);
+            //Draw Bricks row1
+            for (int i = 0; i < Bricks1.length; i++) {
+                if (Bricks1[i] != null) {
+                    if (lives1[i] == 2) {
+                        g.setColor(brickDarkred);
+                    }
+                    if (lives1[i] == 1) {
+                        g.setColor(brickPink);
+                    }
+                    if (lives1[i] == 0) {
+                        g.setColor(brickOrange);
+                    }
+                    g.fillRect(Bricks1[i].x, Bricks1[i].y, Bricks1[i].width, Bricks1[i].height);
                 }
-                if (lives1[i] == 1) {
-                    g.setColor(brickPink);
+                //Draw Bricks row2
+                if (Bricks2[i] != null) {
+                    if (lives2[i] == 2) {
+                        g.setColor(brickDarkred);
+                    }
+                    if (lives2[i] == 1) {
+                        g.setColor(brickPink);
+                    }
+                    if (lives2[i] == 0) {
+                        g.setColor(brickOrange);
+                    }
+                    g.fillRect(Bricks2[i].x, Bricks2[i].y, Bricks2[i].width, Bricks2[i].height);
                 }
-                if (lives1[i] == 0) {
-                    g.setColor(brickOrange);
+                //Row 3
+                if (Bricks3[i] != null) {
+                    if (lives3[i] == 2) {
+                        g.setColor(brickDarkred);
+                    }
+                    if (lives3[i] == 1) {
+                        g.setColor(brickPink);
+                    }
+                    if (lives3[i] == 0) {
+                        g.setColor(brickOrange);
+                    }
+                    g.fillRect(Bricks3[i].x, Bricks3[i].y, Bricks3[i].width, Bricks3[i].height);
                 }
-                g.fillRect(Bricks1[i].x, Bricks1[i].y, Bricks1[i].width, Bricks1[i].height);
-            }
-            //Draw Bricks row2
-            if (Bricks2[i] != null) {
-                if (lives2[i] == 2) {
-                    g.setColor(brickDarkred);
+                //Row 4
+                if (Bricks4[i] != null) {
+                    if (lives4[i] == 2) {
+                        g.setColor(brickDarkred);
+                    }
+                    if (lives4[i] == 1) {
+                        g.setColor(brickPink);
+                    }
+                    if (lives4[i] == 0) {
+                        g.setColor(brickOrange);
+                    }
+                    g.fillRect(Bricks4[i].x, Bricks4[i].y, Bricks4[i].width, Bricks4[i].height);
                 }
-                if (lives2[i] == 1) {
-                    g.setColor(brickPink);
+                //row 5
+                if (Bricks5[i] != null) {
+                    if (lives5[i] == 2) {
+                        g.setColor(brickDarkred);
+                    }
+                    if (lives5[i] == 1) {
+                        g.setColor(brickPink);
+                    }
+                    if (lives5[i] == 0) {
+                        g.setColor(brickOrange);
+                    }
+                    g.fillRect(Bricks5[i].x, Bricks5[i].y, Bricks5[i].width, Bricks5[i].height);
                 }
-                if (lives2[i] == 0) {
-                    g.setColor(brickOrange);
+                //row 6
+                if (Bricks6[i] != null) {
+                    if (lives6[i] == 2) {
+                        g.setColor(brickDarkred);
+                    }
+                    if (lives6[i] == 1) {
+                        g.setColor(brickPink);
+                    }
+                    if (lives6[i] == 0) {
+                        g.setColor(brickOrange);
+                    }
+                    g.fillRect(Bricks6[i].x, Bricks6[i].y, Bricks6[i].width, Bricks6[i].height);
                 }
-                g.fillRect(Bricks2[i].x, Bricks2[i].y, Bricks2[i].width, Bricks2[i].height);
-            }
-            //Row 3
-            if (Bricks3[i] != null) {
-                if (lives3[i] == 2) {
-                    g.setColor(brickDarkred);
-                }
-                if (lives3[i] == 1) {
-                    g.setColor(brickPink);
-                }
-                if (lives3[i] == 0) {
-                    g.setColor(brickOrange);
-                }
-                g.fillRect(Bricks3[i].x, Bricks3[i].y, Bricks3[i].width, Bricks3[i].height);
-            }
-            //Row 4
-            if (Bricks4[i] != null) {
-                if (lives4[i] == 2) {
-                    g.setColor(brickDarkred);
-                }
-                if (lives4[i] == 1) {
-                    g.setColor(brickPink);
-                }
-                if (lives4[i] == 0) {
-                    g.setColor(brickOrange);
-                }
-                g.fillRect(Bricks4[i].x, Bricks4[i].y, Bricks4[i].width, Bricks4[i].height);
-            }
-            //row 5
-            if (Bricks5[i] != null) {
-                if (lives5[i] == 2) {
-                    g.setColor(brickDarkred);
-                }
-                if (lives5[i] == 1) {
-                    g.setColor(brickPink);
-                }
-                if (lives5[i] == 0) {
-                    g.setColor(brickOrange);
-                }
-                g.fillRect(Bricks5[i].x, Bricks5[i].y, Bricks5[i].width, Bricks5[i].height);
-            }
-            //row 6
-            if (Bricks6[i] != null) {
-                if (lives6[i] == 2) {
-                    g.setColor(brickDarkred);
-                }
-                if (lives6[i] == 1) {
-                    g.setColor(brickPink);
-                }
-                if (lives6[i] == 0) {
-                    g.setColor(brickOrange);
-                }
-                g.fillRect(Bricks6[i].x, Bricks6[i].y, Bricks6[i].width, Bricks6[i].height);
             }
         }
-
         // GAME DRAWING ENDS HERE
     }
 
@@ -407,6 +435,7 @@ public class SpongePants extends JComponent {
 
             // all your game rules and move is done in here
             // GAME LOGIC STARTS HERE 
+            //start screen
             // move the ball
             ball.x = ball.x + ballXDirection * ballSpeed;
             ball.y = ball.y + ballYDirection * ballSpeed;
@@ -516,6 +545,12 @@ public class SpongePants extends JComponent {
             } else if (key == KeyEvent.VK_RIGHT) {
                 playerRight = true;
             }
+            if (key == KeyEvent.VK_S) {
+                gameStart = true;
+            }
+            if (key == KeyEvent.VK_P) {
+                gamePause = true;
+            }
         }
         // if a key has been released
 
@@ -528,6 +563,13 @@ public class SpongePants extends JComponent {
                 playerLeft = false;
             } else if (key == KeyEvent.VK_RIGHT) {
                 playerRight = false;
+            }
+            if (key == KeyEvent.VK_S) {
+                gamePause=false;
+            }
+            if (key == KeyEvent.VK_P) {
+                gameStart = false;
+
             }
         }
     }
