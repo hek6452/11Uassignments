@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -62,6 +63,7 @@ public class SpongePants extends JComponent {
             if (ball.intersects(bricks[i])) {
                 if (lives1[i] >= 0) {
                     lives1[i] = lives1[i] - 1;
+                    playerScore++;
                 }
                 if (lives1[i] < 0) {
                     bricks[i].x = 20000;
@@ -82,6 +84,7 @@ public class SpongePants extends JComponent {
             if (ball.intersects(bricks[i])) {
                 if (lives2[i] >= 0) {
                     lives2[i] = lives2[i] - 1;
+                    playerScore++;
                 }
                 if (lives2[i] < 0) {
                     bricks[i].x = 20000;
@@ -103,6 +106,7 @@ public class SpongePants extends JComponent {
             if (ball.intersects(bricks[i])) {
                 if (lives3[i] >= 0) {
                     lives3[i] = lives3[i] - 1;
+                    playerScore++;
                 }
                 if (lives3[i] < 0) {
                     bricks[i].x = 20000;
@@ -123,6 +127,7 @@ public class SpongePants extends JComponent {
             if (ball.intersects(bricks[i])) {
                 if (lives4[i] >= 0) {
                     lives4[i] = lives4[i] - 1;
+                    playerScore++;
                 }
                 if (lives4[i] < 0) {
                     bricks[i].x = 20000;
@@ -143,6 +148,7 @@ public class SpongePants extends JComponent {
             if (ball.intersects(bricks[i])) {
                 if (lives5[i] >= 0) {
                     lives5[i] = lives5[i] - 1;
+                    playerScore++;
                 }
                 if (lives5[i] < 0) {
                     bricks[i].x = 20000;
@@ -163,6 +169,7 @@ public class SpongePants extends JComponent {
             if (ball.intersects(bricks[i])) {
                 if (lives6[i] >= 0) {
                     lives6[i] = lives6[i] - 1;
+                    playerScore++;
                 }
                 if (lives6[i] < 0) {
                     bricks[i].x = 20000;
@@ -217,8 +224,10 @@ public class SpongePants extends JComponent {
     Rectangle playermid = new Rectangle(360, 560, 60, 25);
     Rectangle playerright = new Rectangle(420, 560, 60, 25);
     int paddleSpeed = 10;
+    //Booleans for player movement
     boolean playerLeft = false;
     boolean playerRight = false;
+    //booleans for game initiation
     boolean gameStart = false;
     boolean gamePause = false;
     //create ball
@@ -231,6 +240,13 @@ public class SpongePants extends JComponent {
     //int dy = (int) (4 * Math.sin(Math.toRadians(45)));
     //Amount of brick lives
     int brickLives = 2;
+    //set player score
+     int playerScore = 0;
+     //create font
+     Font biggerFont = new Font("arial", Font.BOLD, 42);
+     Font startTitle = new Font("arial", Font.BOLD, 100);
+     //start screen title
+     
 
     // GAME VARIABLES END HERE   
     // Constructor to create the Frame and place the panel in
@@ -265,22 +281,27 @@ public class SpongePants extends JComponent {
     // NOTE: This is already double buffered!(helps with framerate/speed)
     @Override
     public void paintComponent(Graphics g) {
-        while (gameStart && gamePause) {
+    //start screen
+      g.setFont(startTitle);     
+      g.drawString("Smash Ball" , 150,300 );
+    //Start the game
+        if (gameStart && !gamePause) {
             // always clear the screen first!
             g.clearRect(0, 0, WIDTH, HEIGHT);
-
             // GAME DRAWING GOES HERE
-            //lives
+            // draw scores
+        g.setFont(biggerFont);
+        g.drawString("" + playerScore, WIDTH/2, 50);
             // draw the player portions
-            g.setColor(brickDarkred);
+            //g.setColor(brickDarkred);
             g.fillRect(playerleft.x, playerleft.y,
                     playerleft.width, playerleft.height);
 
-            g.setColor(brickPink);
+            //g.setColor(brickPink);
             g.fillRect(playermid.x, playermid.y,
                     playermid.width, playermid.height);
 
-            g.setColor(brickOrange);
+            //g.setColor(brickOrange);
             g.fillRect(playerright.x, playerright.y,
                     playerright.width, playerright.height);
 
@@ -369,10 +390,12 @@ public class SpongePants extends JComponent {
                     g.fillRect(Bricks6[i].x, Bricks6[i].y, Bricks6[i].width, Bricks6[i].height);
                 }
             }
+        } else {
+
         }
-        // GAME DRAWING ENDS HERE
     }
 
+    // GAME DRAWING ENDS HERE
     // This method is used to do any pre-setup you might need to do
     // This is run before the game loop begins!
     public void preSetup() {
@@ -436,57 +459,58 @@ public class SpongePants extends JComponent {
             // all your game rules and move is done in here
             // GAME LOGIC STARTS HERE 
             //start screen
-            // move the ball
-            ball.x = ball.x + ballXDirection * ballSpeed;
-            ball.y = ball.y + ballYDirection * ballSpeed;
+            if (gameStart && !gamePause) {
+                // move the ball
+                ball.x = ball.x + ballXDirection * ballSpeed;
+                ball.y = ball.y + ballYDirection * ballSpeed;
 
-            // get ball to bounce off right side
-            // bottom of ball hit right side of screen
-            if (ball.x + ball.width >= WIDTH) {
-                // change x direction
-                ballXDirection = ballXDirection * -1;
-            }
-            // bottom of ball hit left side of screen
-            if (ball.x <= 0) {
-                // change x direction
-                ballXDirection = ballXDirection * -1;
-            }
+                // get ball to bounce off right side
+                // bottom of ball hit right side of screen
+                if (ball.x + ball.width >= WIDTH) {
+                    // change x direction
+                    ballXDirection = ballXDirection * -1;
+                }
+                // bottom of ball hit left side of screen
+                if (ball.x <= 0) {
+                    // change x direction
+                    ballXDirection = ballXDirection * -1;
+                }
 
-            // top of ball hit top of screen
-            if (ball.y <= 0) {
-                ballYDirection = ballYDirection * -1;
-            }
-            // did the ball hit the player paddle
-            paddleSidecollision();
-            //Get ball to change velocity in relation to paddle
+                // top of ball hit top of screen
+                if (ball.y <= 0) {
+                    ballYDirection = ballYDirection * -1;
+                }
+                // did the ball hit the player paddle
+                paddleSidecollision();
+                //Get ball to change velocity in relation to paddle
 
-            // check for collisions for brick arrays
-            brickCollision1(Bricks1);
-            brickCollision2(Bricks2);
-            brickCollision3(Bricks3);
-            brickCollision4(Bricks4);
-            brickCollision5(Bricks5);
-            brickCollision6(Bricks6);
+                // check for collisions for brick arrays
+                brickCollision1(Bricks1);
+                brickCollision2(Bricks2);
+                brickCollision3(Bricks3);
+                brickCollision4(Bricks4);
+                brickCollision5(Bricks5);
+                brickCollision6(Bricks6);
 
-            //moving player paddle left portion
-            if (playerLeft && playerleft.x > 0) {
-                playerleft.x = playerleft.x - paddleSpeed;
-            } else if (playerRight && playerleft.x + playerleft.width < 680) {
-                playerleft.x = playerleft.x + paddleSpeed;
+                //moving player paddle left portion
+                if (playerLeft && playerleft.x > 0) {
+                    playerleft.x = playerleft.x - paddleSpeed;
+                } else if (playerRight && playerleft.x + playerleft.width < 680) {
+                    playerleft.x = playerleft.x + paddleSpeed;
+                }
+                //moving player paddle middle portion
+                if (playerLeft && playermid.x > 60) {
+                    playermid.x = playermid.x - paddleSpeed;
+                } else if (playerRight && playermid.x + playermid.width < 740) {
+                    playermid.x = playermid.x + paddleSpeed;
+                }
+                //moving player paddle right portion
+                if (playerLeft && playerright.x > 120) {
+                    playerright.x = playerright.x - paddleSpeed;
+                } else if (playerRight && playerright.x + playerright.width < WIDTH) {
+                    playerright.x = playerright.x + paddleSpeed;
+                }
             }
-            //moving player paddle middle portion
-            if (playerLeft && playermid.x > 60) {
-                playermid.x = playermid.x - paddleSpeed;
-            } else if (playerRight && playermid.x + playermid.width < 740) {
-                playermid.x = playermid.x + paddleSpeed;
-            }
-            //moving player paddle right portion
-            if (playerLeft && playerright.x > 120) {
-                playerright.x = playerright.x - paddleSpeed;
-            } else if (playerRight && playerright.x + playerright.width < WIDTH) {
-                playerright.x = playerright.x + paddleSpeed;
-            }
-
             // GAME LOGIC ENDS HERE 
             // update the drawing (calls paintComponent)
             repaint();
@@ -506,8 +530,8 @@ public class SpongePants extends JComponent {
             };
         }
     }
-
     // Used to implement any of the Mouse Actions
+
     private class Mouse extends MouseAdapter {
         // if a mouse button has been pressed down
 
@@ -565,7 +589,7 @@ public class SpongePants extends JComponent {
                 playerRight = false;
             }
             if (key == KeyEvent.VK_S) {
-                gamePause=false;
+                gamePause = false;
             }
             if (key == KeyEvent.VK_P) {
                 gameStart = false;
