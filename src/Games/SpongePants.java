@@ -39,7 +39,8 @@ public class SpongePants extends JComponent {
                 ballYDirection = ballYDirection * -1;
                 ballXDirection = ballXDirection * +1;
             }
-            ballYDirection = -1;
+            ballYDirection = -2;
+            ballSpeed=3;
         }
         // did the ball hit the player paddle
         if (ball.intersects(playerright)) {
