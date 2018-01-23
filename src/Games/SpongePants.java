@@ -301,7 +301,10 @@ public class SpongePants extends JComponent {
             g.setFont(stoStart);
             g.drawString("Press S to play", 250, 400);
             g.setFont(pause);
-            g.drawString("Press P to pause", 250, 500);
+            g.drawString("Press P to pause", 250, 475);
+            //No point in making another font for the same size
+            g.setFont(pause);
+            g.drawString("Press <-- & --> arrow keys to move", 120, 550);
         }
         //Start the game
         if (gameStart && !gamePause) {
@@ -427,7 +430,7 @@ public class SpongePants extends JComponent {
         if (playerScore == 252) {
             g.setFont(gameWin);
             g.drawString("YOU WIN!", 150, 300);
-
+            
         }
     }
     // GAME DRAWING ENDS HERE
