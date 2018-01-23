@@ -419,7 +419,7 @@ public class SpongePants extends JComponent {
 
         }
         //loss menu
-        if (end) {
+        if (end&&playerScore!=252) {
             gameStart = false;
             startMenu = true;
             g.setFont(gameOver);
@@ -430,7 +430,7 @@ public class SpongePants extends JComponent {
         if (playerScore == 252) {
             g.setFont(gameWin);
             g.drawString("YOU WIN!", 150, 300);
-            
+            startMenu=true;
         }
     }
     // GAME DRAWING ENDS HERE
