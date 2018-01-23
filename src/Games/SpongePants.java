@@ -231,6 +231,8 @@ public class SpongePants extends JComponent {
     boolean gameStart = false;
     boolean gamePause = false;
     boolean reset = false;
+    boolean end = false;
+    boolean startMenu = false;
     //create ball
     int ballSize = 20;
     Rectangle ball = new Rectangle(375, 525, ballSize, ballSize);
@@ -284,15 +286,16 @@ public class SpongePants extends JComponent {
     // NOTE: This is already double buffered!(helps with framerate/speed)
     @Override
     public void paintComponent(Graphics g) {
-        //start screen
-        g.setFont(startTitle);
-        g.drawString("Smash Ball", 150, 300);
-        g.setFont(stoStart);
-        g.drawString("Press S to start", 250, 400);
-        g.setFont(pause);
-        g.drawString("Press P to pause", 250, 500);
+        if (!startMenu) {
+            //start screen
+            g.setFont(startTitle);
+            g.drawString("Smash Ball", 150, 300);
+            g.setFont(stoStart);
+            g.drawString("Press S to start", 250, 400);
+            g.setFont(pause);
+            g.drawString("Press P to pause", 250, 500);
+        }
         //Start the game
-
         if (gameStart && !gamePause) {
             // always clear the screen first!
             g.clearRect(0, 0, WIDTH, HEIGHT);
@@ -396,26 +399,32 @@ public class SpongePants extends JComponent {
                         g.setColor(brickOrange);
                     }
                     g.fillRect(Bricks6[i].x, Bricks6[i].y, Bricks6[i].width, Bricks6[i].height);
-                } else {
-
-                    g.setFont(gameOver);
-                    g.drawString("Game Over!", 150, 300);
                 }
             }
+            //what happens when ball reaches bottom of screen,(You lose)
             if (ball.y > 600) {
-                gameStart = false;
-                gamePause = true;
-
+                end = true;
             }
+
+        }
+        //end menu
+        if (end) {
+            gameStart=false;
+            startMenu = true;
+            g.setFont(gameOver);
+            g.drawString("Game Over!", 150, 300);
+
         }
     }
-
     // GAME DRAWING ENDS HERE
     // This method is used to do any pre-setup you might need to do
     // This is run before the game loop begins!
+
     public void preSetup() {
         // Any of your pre setup before the loop starts should go here
+        //create rows of brick arrays 
         Bricks1[0] = new Rectangle(20, 250, 50, 25);
+        //set lives per brick
         lives1[0] = 2;
         for (int i = 1; i < Bricks1.length; i++) {
             lives1[i] = 2;
