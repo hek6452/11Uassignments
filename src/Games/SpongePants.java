@@ -73,6 +73,7 @@ public class SpongePants extends JComponent {
             }
             {
                 ballYDirection = ballYDirection * -1;
+                ballXDirection=ballXDirection*-1;
             }
         }
     }
@@ -95,6 +96,7 @@ public class SpongePants extends JComponent {
             }
             {
                 ballYDirection = ballYDirection * -1;
+                 ballXDirection=ballXDirection*-1;
             }
         }
     }
@@ -116,6 +118,7 @@ public class SpongePants extends JComponent {
             }
             {
                 ballYDirection = ballYDirection * -1;
+                ballXDirection=ballXDirection*-1;
             }
         }
     }
@@ -137,6 +140,7 @@ public class SpongePants extends JComponent {
             }
             {
                 ballYDirection = ballYDirection * -1;
+                ballXDirection=ballXDirection*-1;
             }
         }
     }
@@ -158,6 +162,7 @@ public class SpongePants extends JComponent {
             }
             {
                 ballYDirection = ballYDirection * -1;
+                ballXDirection=ballXDirection*-1;
             }
         }
     }
@@ -179,6 +184,7 @@ public class SpongePants extends JComponent {
             }
             {
                 ballYDirection = ballYDirection * -1;
+                ballXDirection=ballXDirection*-1;
             }
 
         }
@@ -233,6 +239,7 @@ public class SpongePants extends JComponent {
     boolean reset = false;
     boolean end = false;
     boolean startMenu = false;
+    boolean win = false;
     //create ball
     int ballSize = 20;
     Rectangle ball = new Rectangle(375, 525, ballSize, ballSize);
@@ -251,6 +258,7 @@ public class SpongePants extends JComponent {
     Font gameOver = new Font("arial", Font.BOLD, 100);
     Font stoStart = new Font("arial", Font.BOLD, 40);
     Font pause = new Font("arial", Font.BOLD, 40);
+    Font gameWin = new Font("arial", Font.BOLD, 100);
     //start screen title
 
     // GAME VARIABLES END HERE   
@@ -291,7 +299,7 @@ public class SpongePants extends JComponent {
             g.setFont(startTitle);
             g.drawString("Smash Ball", 150, 300);
             g.setFont(stoStart);
-            g.drawString("Press S to start", 250, 400);
+            g.drawString("Press S to play", 250, 400);
             g.setFont(pause);
             g.drawString("Press P to pause", 250, 500);
         }
@@ -407,12 +415,18 @@ public class SpongePants extends JComponent {
             }
 
         }
-        //end menu
+        //loss menu
         if (end) {
-            gameStart=false;
+            gameStart = false;
             startMenu = true;
             g.setFont(gameOver);
             g.drawString("Game Over!", 150, 300);
+
+        }
+        //win screen
+        if (playerScore == 252) {
+            g.setFont(gameWin);
+            g.drawString("YOU WIN!", 150, 300);
 
         }
     }
