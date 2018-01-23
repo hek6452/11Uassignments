@@ -230,6 +230,7 @@ public class SpongePants extends JComponent {
     //booleans for game initiation
     boolean gameStart = false;
     boolean gamePause = false;
+    boolean reset = false;
     //create ball
     int ballSize = 20;
     Rectangle ball = new Rectangle(375, 525, ballSize, ballSize);
@@ -245,8 +246,9 @@ public class SpongePants extends JComponent {
     //create font
     Font biggerFont = new Font("arial", Font.BOLD, 42);
     Font startTitle = new Font("arial", Font.BOLD, 100);
+    Font gameOver = new Font("arial", Font.BOLD, 100);
     Font stoStart = new Font("arial", Font.BOLD, 40);
-    Font pause = new Font("arial", Font.BOLD, 100);
+    Font pause = new Font("arial", Font.BOLD, 40);
     //start screen title
 
     // GAME VARIABLES END HERE   
@@ -287,7 +289,10 @@ public class SpongePants extends JComponent {
         g.drawString("Smash Ball", 150, 300);
         g.setFont(stoStart);
         g.drawString("Press S to start", 250, 400);
+        g.setFont(pause);
+        g.drawString("Press P to pause", 250, 500);
         //Start the game
+
         if (gameStart && !gamePause) {
             // always clear the screen first!
             g.clearRect(0, 0, WIDTH, HEIGHT);
@@ -391,11 +396,17 @@ public class SpongePants extends JComponent {
                         g.setColor(brickOrange);
                     }
                     g.fillRect(Bricks6[i].x, Bricks6[i].y, Bricks6[i].width, Bricks6[i].height);
+                } else {
+
+                    g.setFont(gameOver);
+                    g.drawString("Game Over!", 150, 300);
                 }
             }
-        } else{
-            
-            
+            if (ball.y > 600) {
+                gameStart = false;
+                gamePause = true;
+
+            }
         }
     }
 
@@ -578,6 +589,9 @@ public class SpongePants extends JComponent {
             }
             if (key == KeyEvent.VK_P) {
                 gamePause = true;
+            }
+            if (key == KeyEvent.VK_R) {
+                reset = true;
             }
         }
         // if a key has been released
